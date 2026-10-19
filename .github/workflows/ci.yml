@@ -53,6 +53,7 @@ jobs:
         run: |
           npm run build:data-provider
           npm run build:data-schemas
+          npm run build:client-package
 
       - name: Run TypeScript typecheck
         working-directory: client
@@ -79,6 +80,12 @@ jobs:
           mkdir -p api/data
           echo '{}' > api/data/auth.json
           cp api/test/.env.test.example api/test/.env.test
+
+      - name: Build workspace packages
+        run: |
+          npm run build:data-provider
+          npm run build:data-schemas
+          npm run build:api
 
       - name: Run client unit tests
         run: npm run test:client
