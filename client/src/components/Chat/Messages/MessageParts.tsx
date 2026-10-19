@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { useRecoilValue } from 'recoil';
 import type { TMessageContentParts } from 'librechat-data-provider';
 import type { TMessageProps, TMessageIcon } from '~/common';
-import { useMessageHelpers, useLocalize, useAttachments } from '~/hooks';
+import { useMessageHelpers, useMessageActions, useLocalize, useAttachments } from '~/hooks';
 import MessageIcon from '~/components/Chat/Messages/MessageIcon';
 import ContentParts from './Content/ContentParts';
 import SiblingSwitch from './SiblingSwitch';
@@ -35,6 +35,11 @@ export default function Message(props: TMessageProps) {
     copyToClipboard,
     regenerateMessage,
   } = useMessageHelpers(props);
+  const { handleFeedback } = useMessageActions({
+    message,
+    currentEditId,
+    setCurrentEditId,
+  });
 
   const fontSize = useRecoilValue(store.fontSize);
   const maximizeChatSpace = useRecoilValue(store.maximizeChatSpace);
@@ -148,6 +153,7 @@ export default function Message(props: TMessageProps) {
                       copyToClipboard={copyToClipboard}
                       handleContinue={handleContinue}
                       latestMessage={latestMessage}
+                      handleFeedback={handleFeedback}
                       isLast={isLast}
                     />
                   </SubRow>

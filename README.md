@@ -154,6 +154,19 @@ Click on the thumbnail to open the video☝️
 
 ---
 
+## CI
+
+The [`CI` workflow](.github/workflows/ci.yml) runs automatically on every pull request and on pushes to `main`. It installs dependencies with `npm ci` and executes the repository's existing checks:
+
+- **Lint** – `npm run lint` (ESLint over the repo)
+- **Typecheck** – `npm run typecheck` in `client` after building the `data-provider`, `data-schemas`, and `client` workspace packages
+- **Test** – `npm run test:client` and `npm run test:api` (Jest in CI mode) after building the `data-provider`, `data-schemas`, `api`, and `client` workspace packages
+- **Build** – `npm run frontend:ci` (Vite production build)
+
+Superseded runs on the same branch are cancelled automatically. The workflow uses least-privilege `contents: read` permission and only read-only, SHA-pinned actions.
+
+---
+
 ## 📝 Changelog
 
 Keep up with the latest updates by visiting the releases page and notes:

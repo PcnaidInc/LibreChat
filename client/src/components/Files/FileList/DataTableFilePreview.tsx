@@ -3,6 +3,7 @@ import DataTableFile from './DataTableFile';
 import { TVectorStore } from '~/common';
 import { files } from '../../Chat/Input/Files/Table';
 import { fileTableColumns } from './../FileList/FileTableColumns';
+import type { TFileWithVectorStores } from './../FileList/FileTableColumns';
 
 const vectorStoresAttached: TVectorStore[] = [
   {
@@ -67,14 +68,15 @@ const vectorStoresAttached: TVectorStore[] = [
   },
 ];
 
-files.forEach((file) => {
-  file['vectorsAttached'] = vectorStoresAttached;
-});
+const filesWithVectorStores: TFileWithVectorStores[] = files.map((file) => ({
+  ...file,
+  vectorsAttached: vectorStoresAttached,
+}));
 
 export default function DataTableFilePreview() {
   return (
     <div>
-      <DataTableFile columns={fileTableColumns} data={files} />
+      <DataTableFile columns={fileTableColumns} data={filesWithVectorStores} />
       <div className="mt-5 sm:mt-4" />
     </div>
   );

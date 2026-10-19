@@ -225,7 +225,7 @@ export type AgentPanelContextType = {
   setActivePanel: React.Dispatch<React.SetStateAction<Panel>>;
   setCurrentAgentId: React.Dispatch<React.SetStateAction<string | undefined>>;
   agent_id?: string;
-  agentsConfig?: t.TAgentsEndpoint;
+  agentsConfig?: t.TAgentsEndpoint | null;
 };
 
 export type AgentModelPanelProps = {
