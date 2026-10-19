@@ -282,7 +282,7 @@ const VirtualizedAgentGrid: React.FC<VirtualizedAgentGridProps> = ({
                   const rowCount = getRowCount(currentAgents.length, cardsPerRow);
 
                   return (
-                    <div ref={registerChild}>
+                    <div ref={(el) => registerChild(el)}>
                       <VirtualList
                         ref={listRef}
                         autoHeight

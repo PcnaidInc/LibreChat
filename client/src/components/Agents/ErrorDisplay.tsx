@@ -27,7 +27,7 @@ type ApiError =
     };
 
 interface ErrorDisplayProps {
-  error: ApiError;
+  error?: ApiError | null;
   onRetry?: () => void;
   context?: {
     searchQuery?: string;
